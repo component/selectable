@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -10,7 +9,7 @@ var events = require('events');
 var query = require('query');
 
 /**
- * Expose `Selectable.
+ * Expose `Selectable`.
  */
 
 module.exports = Selectable;
