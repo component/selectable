@@ -24,7 +24,7 @@ module.exports = Selectable;
 function rectsIntersect(a, b) {
   return !(a.left > (b.x + b.w)
     || (a.left + a.width) < b.x
-    || a.top > (b.y + b.height)
+    || a.top > (b.y + b.h)
     || (a.top + a.height) < b.y);
 }
 
