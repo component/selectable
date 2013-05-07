@@ -1,0 +1,20 @@
+{
+  "name": "selectable",
+  "repo": "component/selectable",
+  "description": "Selectable DOM elements",
+  "version": "0.0.1",
+  "keywords": ["select", "selectable", "selection"],
+  "dependencies": {
+    "component/emitter": "*",
+    "component/query": "0.0.1",
+    "component/classes": "1.1.0",
+    "component/events": "1.0.2",
+    "component/selection-rect": "0.0.1"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}

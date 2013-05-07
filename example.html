@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Selectable</title>
+  <link rel="stylesheet" type="text/css" href="build/build.css">
+  <style>
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+    body {
+      padding: 150px;
+    }
+
+    #pets {
+      margin: 0;
+      padding: 0;
+    }
+
+    #pets li {
+      float: left;
+      margin: 5px;
+      padding: 50px;
+      border: 1px dotted #ddd;
+      background: #eee;
+    }
+
+    #pets li.selectover {
+      border: 1px dashed #32a7d2;
+    }
+
+    #pets li.selected {
+      background: rgba(50, 167, 210, 0.220);
+    }
+  </style>
+</head>
+<body>
+  <ul id="pets">
+    <li data-name="tobi">Tobi</li>
+    <li data-name="loki">Loki</li>
+    <li data-name="jane">Jane</li>
+    <li data-name="abby">Abby</li>
+  </ul>
+
+  <script src="build/build.js"></script>
+  <script>
+    var selectable = require('selectable');
+    var selection = selectable('#pets > li');
+
+    selection.on('change', function(e){
+      for (var i = 0; i < e.selected.length; i++) {
+        console.log(e.selected[i].getAttribute('data-name'));
+      }
+    });
+  </script>
+</body>
+</html>
