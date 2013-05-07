@@ -8,8 +8,24 @@
       -moz-user-select: none;
       user-select: none;
     }
+
     body {
       padding: 150px;
+      font: "Helvetica Neue";
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      list-style: none;
+    }
+
+    .selection-rect {
+      border: 1px solid rgba(46, 156, 195, 0.3);
+      background: rgba(50, 167, 210, 0.05);
     }
 
     #pets {
@@ -32,6 +48,27 @@
     #pets li.selected {
       background: rgba(50, 167, 210, 0.220);
     }
+
+    #nums {
+      margin-top: 50px;
+      float: left;
+      clear: both;
+    }
+
+    #nums li {
+      float: left;
+      padding: 5px;
+      margin: 1px;
+      font-size: 11px;
+    }
+
+    #nums li.selectover {
+      background: #eee;
+    }
+
+    #nums li.selected {
+      background: #ddd;
+    }
   </style>
 </head>
 <body>
@@ -42,12 +79,30 @@
     <li data-name="abby">Abby</li>
   </ul>
 
+  <ul id="nums"></ul>
+
   <script src="build/build.js"></script>
   <script>
     var selectable = require('selectable');
-    var selection = selectable('#pets > li');
+    var a = selectable('#pets > li');
 
-    selection.on('change', function(e){
+    a.on('change', function(e){
+      for (var i = 0; i < e.selected.length; i++) {
+        console.log(e.selected[i].getAttribute('data-name'));
+      }
+    });
+
+    var n = 1000;
+    var nums = document.querySelector('#nums');
+    while (n--) {
+      var li = document.createElement('li');
+      li.textContent = '#' + n;
+      nums.appendChild(li);
+    }
+
+    var b = selectable('#nums > li');
+
+    b.on('change', function(e){
       for (var i = 0; i < e.selected.length; i++) {
         console.log(e.selected[i].getAttribute('data-name'));
       }
