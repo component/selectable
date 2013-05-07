@@ -105,7 +105,7 @@
 
     b.on('change', function(e){
       for (var i = 0; i < e.selected.length; i++) {
-        console.log(e.selected[i].getAttribute('data-name'));
+        console.log(e.selected[i].textContent);
       }
     });
   </script>
