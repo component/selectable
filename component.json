@@ -9,7 +9,7 @@
     "component/query": "0.0.1",
     "component/classes": "1.1.0",
     "component/events": "1.0.2",
-    "component/selection-rect": "0.0.1"
+    "component/selection-rect": "0.0.2"
   },
   "development": {},
   "license": "MIT",

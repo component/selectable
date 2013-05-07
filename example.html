@@ -72,25 +72,25 @@
   </style>
 </head>
 <body>
-  <ul id="pets">
+<!--   <ul id="pets">
     <li data-name="tobi">Tobi</li>
     <li data-name="loki">Loki</li>
     <li data-name="jane">Jane</li>
     <li data-name="abby">Abby</li>
-  </ul>
+  </ul> -->
 
   <ul id="nums"></ul>
 
   <script src="build/build.js"></script>
   <script>
     var selectable = require('selectable');
-    var a = selectable('#pets > li');
+    // var a = selectable('#pets > li');
 
-    a.on('change', function(e){
-      for (var i = 0; i < e.selected.length; i++) {
-        console.log(e.selected[i].getAttribute('data-name'));
-      }
-    });
+    // a.on('change', function(e){
+    //   for (var i = 0; i < e.selected.length; i++) {
+    //     console.log(e.selected[i].getAttribute('data-name'));
+    //   }
+    // });
 
     var n = 1000;
     var nums = document.querySelector('#nums');
