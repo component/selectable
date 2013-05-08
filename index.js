@@ -101,7 +101,11 @@ Selectable.prototype.onmousemove = function(e){
 
 Selectable.prototype.onmouseup = function(e){
   this.down = null;
-  this.select(withinRect(this.els(), this.rect));
+  
+  var els = this.els();
+  this.deselect(els);
+  this.select(withinRect(els, this.rect));
+
   this.rect.size(0, 0);
   var el = this.rect.el;
   if (el.parentNode) el.parentNode.removeChild(el)
@@ -130,13 +134,6 @@ Selectable.prototype.selectover = function(a, b){
  */
 
 Selectable.prototype.select = function(a){
-
-  var els = this.els();
-
-  for (var i = 0; i < els.length; i++) {
-    classes(els[i]).remove('selected');
-  }
-
   for (var i = 0; i < a.length; i++) {
     classes(a[i])
       .add('selected')
@@ -145,6 +142,17 @@ Selectable.prototype.select = function(a){
 
   this.change(a);
 };
+
+/**
+ * Remove "selected" classes.
+ */
+
+Selectable.prototype.deselect = function(a){
+  for (var i = 0; i < a.length; i++) {
+    classes(a[i]).remove('selected');
+  }
+}
+
 
 /**
  * Emit "change".
