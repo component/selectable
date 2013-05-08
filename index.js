@@ -101,7 +101,7 @@ Selectable.prototype.onmousemove = function(e){
 
 Selectable.prototype.onmouseup = function(e){
   this.down = null;
-  
+
   var els = this.els();
   this.deselect(els);
   this.select(withinRect(els, this.rect));
@@ -133,23 +133,23 @@ Selectable.prototype.selectover = function(a, b){
  * TODO: cache ClassLists
  */
 
-Selectable.prototype.select = function(a){
-  for (var i = 0; i < a.length; i++) {
-    classes(a[i])
+Selectable.prototype.select = function(els){
+  for (var i = 0; i < els.length; i++) {
+    classes(els[i])
       .add('selected')
       .remove('selectover');
   }
 
-  this.change(a);
+  this.change(els);
 };
 
 /**
  * Remove "selected" classes.
  */
 
-Selectable.prototype.deselect = function(a){
-  for (var i = 0; i < a.length; i++) {
-    classes(a[i]).remove('selected');
+Selectable.prototype.deselect = function(els){
+  for (var i = 0; i < els.length; i++) {
+    classes(els[i]).remove('selected');
   }
 }
 
@@ -158,10 +158,10 @@ Selectable.prototype.deselect = function(a){
  * Emit "change".
  */
 
-Selectable.prototype.change = function(a){
+Selectable.prototype.change = function(els){
   var e = {};
   e.elements = this.els();
-  e.selected = a;
+  e.selected = els;
   this.emit('change', e);
 };
 
