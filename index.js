@@ -90,7 +90,8 @@ Selectable.prototype.onmousedown = function(e){
 Selectable.prototype.onmousemove = function(e){
   if (!this.down) return;
   this.rect.to(e.pageX, e.pageY);
-  var els = query.all(this.selector, this.el);
+
+  var els = this.els();
   this.selectover(els, withinRect(els, this.rect));
 };
 
@@ -100,8 +101,7 @@ Selectable.prototype.onmousemove = function(e){
 
 Selectable.prototype.onmouseup = function(e){
   this.down = null;
-  var els = query.all(this.selector, this.el);
-  this.select(els, withinRect(els, this.rect));
+  this.select(withinRect(this.els(), this.rect));
   this.rect.size(0, 0);
   var el = this.rect.el;
   if (el.parentNode) el.parentNode.removeChild(el)
@@ -129,27 +129,38 @@ Selectable.prototype.selectover = function(a, b){
  * TODO: cache ClassLists
  */
 
-Selectable.prototype.select = function(a, b){
-  for (var i = 0; i < a.length; i++) {
-    classes(a[i]).remove('selected');
+Selectable.prototype.select = function(a){
+
+  var els = this.els();
+
+  for (var i = 0; i < els.length; i++) {
+    classes(els[i]).remove('selected');
   }
 
-  for (var i = 0; i < b.length; i++) {
-    classes(b[i])
+  for (var i = 0; i < a.length; i++) {
+    classes(a[i])
       .add('selected')
       .remove('selectover');
   }
 
-  this.change(a, b);
+  this.change(a);
 };
 
 /**
  * Emit "change".
  */
 
-Selectable.prototype.change = function(a, b){
+Selectable.prototype.change = function(a){
   var e = {};
-  e.elements = a;
-  e.selected = b;
+  e.elements = this.els();
+  e.selected = a;
   this.emit('change', e);
+};
+
+/**
+ * Get selectable elements.
+ */
+
+Selectable.prototype.els = function(){
+  return query.all(this.selector, this.el);
 };
