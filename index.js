@@ -153,6 +153,15 @@ Selectable.prototype.deselect = function(els){
   }
 }
 
+/**
+ * Toggle "selected".
+ */
+
+Selectable.prototype.toggle = function(els){
+  for(var i = 0; i < els.length; i++) {
+    classes(els[i]).toggle('selected');
+  }
+}
 
 /**
  * Emit "change".
@@ -163,6 +172,14 @@ Selectable.prototype.change = function(els){
   e.elements = this.els();
   e.selected = els;
   this.emit('change', e);
+};
+
+/**
+ * Get selected elements.
+ */
+
+Selectable.prototype.selected = function() {
+  return query.all('.selected', this.el);
 };
 
 /**
