@@ -159,7 +159,11 @@ Selectable.prototype.deselect = function(els){
 
 Selectable.prototype.toggle = function(els){
   for(var i = 0; i < els.length; i++) {
-    classes(els[i]).toggle('selected');
+    if(classes(els[i]).has('selected')) {
+      this.deselect([els[i]]);
+    } else {
+      this.select([els[i]]);
+    }
   }
 }
 
