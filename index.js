@@ -15,19 +15,6 @@ var query = require('query');
 module.exports = Selectable;
 
 /**
- * Check if rects intersect.
- *
- * TODO: use Rect#intersects()
- */
-
-function rectsIntersect(a, b) {
-  return !(a.left > (b.x + b.w)
-    || (a.left + a.width) < b.x
-    || a.top > (b.y + b.h)
-    || (a.top + a.height) < b.y);
-}
-
-/**
  * Check if `els` are within the given `rect`.
  *
  * TODO: separate component
@@ -38,7 +25,7 @@ function withinRect(els, rect) {
 
   for (var i = 0; i < els.length; i++) {
     var r = els[i].getBoundingClientRect();
-    if (rectsIntersect(r, rect)) {
+    if (rect.intersects(r)) {
       within.push(els[i]);
     }
   }
