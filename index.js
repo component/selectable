@@ -166,14 +166,6 @@ Selectable.prototype.change = function(els){
 };
 
 /**
- * Get selected elements.
- */
-
-Selectable.prototype.selected = function() {
-  return query.all('.selected', this.el);
-};
-
-/**
  * Get selectable elements.
  */
 
