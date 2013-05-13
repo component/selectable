@@ -37,6 +37,14 @@
 
   Make elements with the given `selector` selectable, with optional context `el`.
 
+### Selectable#select(els)
+
+  Add the given `els` to the selection.
+
+### Selectable#deselect(els)
+
+  Remove the given `els` from the selection.
+
 ## License
 
   MIT
