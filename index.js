@@ -7,6 +7,7 @@ var Emitter = require('emitter');
 var classes = require('classes');
 var events = require('events');
 var query = require('query');
+var position = require('position');
 
 /**
  * Expose `Selectable`.
@@ -24,7 +25,7 @@ function withinRect(els, rect) {
   var within = [];
 
   for (var i = 0; i < els.length; i++) {
-    var r = els[i].getBoundingClientRect();
+    var r = position(els[i]);
     if (rect.intersects(r)) {
       within.push(els[i]);
     }
