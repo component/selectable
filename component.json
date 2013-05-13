@@ -2,7 +2,7 @@
   "name": "selectable",
   "repo": "component/selectable",
   "description": "Selectable DOM elements",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "keywords": ["select", "selectable", "selection"],
   "dependencies": {
     "component/emitter": "*",
