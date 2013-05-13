@@ -7,25 +7,13 @@ var Emitter = require('emitter');
 var classes = require('classes');
 var events = require('events');
 var query = require('query');
+var position = require('position');
 
 /**
  * Expose `Selectable`.
  */
 
 module.exports = Selectable;
-
-/**
- * Check if rects intersect.
- *
- * TODO: use Rect#intersects()
- */
-
-function rectsIntersect(a, b) {
-  return !(a.left > (b.x + b.w)
-    || (a.left + a.width) < b.x
-    || a.top > (b.y + b.h)
-    || (a.top + a.height) < b.y);
-}
 
 /**
  * Check if `els` are within the given `rect`.
@@ -37,8 +25,8 @@ function withinRect(els, rect) {
   var within = [];
 
   for (var i = 0; i < els.length; i++) {
-    var r = els[i].getBoundingClientRect();
-    if (rectsIntersect(r, rect)) {
+    var r = position(els[i]);
+    if (rect.intersects(r)) {
       within.push(els[i]);
     }
   }
@@ -153,6 +141,19 @@ Selectable.prototype.deselect = function(els){
   }
 }
 
+/**
+ * Toggle "selected".
+ */
+
+Selectable.prototype.toggle = function(els){
+  for(var i = 0; i < els.length; i++) {
+    if(classes(els[i]).has('selected')) {
+      this.deselect([els[i]]);
+    } else {
+      this.select([els[i]]);
+    }
+  }
+}
 
 /**
  * Emit "change".
